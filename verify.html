@@ -6,87 +6,97 @@
 <title>التحقق - GLIVO4</title>
 <style>
   body {
-    margin:0; padding:0;
-    font-family: system-ui,Segoe UI,Roboto,Arial;
-    background: linear-gradient(135deg,#0a0f2b,#001f4d);
-    color:#f0f0f0;
-    overflow-x:hidden;
+    margin: 0; padding: 0;
+    font-family: system-ui, Segoe UI, Roboto, Arial;
+    background: linear-gradient(135deg, #0a0f2b, #001f4d);
+    color: #f0f0f0;
+    overflow-x: hidden;
   }
+
   .bg-shape {
-    position:absolute; width:200px; height:200px;
-    background: rgba(14,165,233,0.2); border-radius:50%;
+    position: absolute; width: 200px; height: 200px;
+    background: rgba(14,165,233,0.2); border-radius: 50%;
     animation: float 10s infinite ease-in-out;
   }
-  .bg-shape:nth-child(1){top:50px;left:-50px;}
-  .bg-shape:nth-child(2){bottom:100px;right:-80px;animation-duration:12s;}
-  .bg-shape:nth-child(3){top:200px;right:50px;animation-duration:15s;}
-  @keyframes float{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(50px) rotate(180deg);}}
+  .bg-shape:nth-child(1){top:50px; left:-50px;}
+  .bg-shape:nth-child(2){bottom:100px; right:-80px; animation-duration:12s;}
+  .bg-shape:nth-child(3){top:200px; right:50px; animation-duration:15s;}
+  @keyframes float {
+    0%,100%{transform: translateY(0) rotate(0deg);}
+    50% {transform: translateY(50px) rotate(180deg);}
+  }
 
-  .container{
-    max-width:520px;
-    margin:60px auto 40px;
-    padding:20px;
+  .container {
+    max-width: 520px;
+    margin: 60px auto 40px;
+    padding: 20px;
     background: rgba(0,0,0,0.7);
-    border-radius:16px;
-    box-shadow:0 10px 30px rgba(0,0,0,.6);
-    position: relative; z-index:1;
-    text-align:center;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.6);
+    position: relative; z-index: 1;
+    text-align: center;
   }
-  .container img{
-    width:100%;
-    border-radius:12px;
-    margin-bottom:16px;
-    border:2px solid #0ea5e9;
+
+  .container img {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    border: 2px solid #0ea5e9;
   }
-  .notice{
-    font-size:16px;
-    color:#c0f0ff;
-    margin-bottom:20px;
+
+  .notice {
+    font-size: 16px;
+    color: #c0f0ff;
+    margin-bottom: 20px;
   }
-  .option-card{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+
+  .option-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background: rgba(14,165,233,0.1);
-    padding:14px 16px;
-    margin:10px 0;
-    border-radius:12px;
-    cursor:pointer;
-    transition:0.3s;
+    padding: 14px 16px;
+    margin: 10px 0;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
   }
-  .option-card:hover{
+  .option-card:hover {
     background: rgba(14,165,233,0.25);
   }
-  .option-card span{
-    font-size:16px;
-    font-weight:600;
+
+  .option-card span {
+    font-size: 16px;
+    font-weight: 600;
   }
-  .option-card a{
-    padding:10px 16px;
-    background:#0ea5e9;
-    color:#fff;
-    text-decoration:none;
-    font-weight:700;
-    border-radius:12px;
-    transition:0.3s;
+
+  .option-card a {
+    padding: 10px 16px;
+    background: #0ea5e9;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 12px;
+    transition: 0.3s;
   }
-  .option-card a:hover{
-    background:#0284c7;
+  .option-card a:hover {
+    background: #0284c7;
   }
-  .back-btn{
-    display:block;
-    width:50%;
-    margin:20px auto 0;
-    padding:12px;
-    background:#64748b;
-    color:#fff;
-    text-decoration:none;
-    border-radius:12px;
-    font-weight:600;
-    transition:0.3s;
+
+  .back-btn {
+    display: block;
+    width: 50%;
+    margin: 20px auto 0;
+    padding: 12px;
+    background: #64748b;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: 0.3s;
   }
-  .back-btn:hover{
-    background:#475569;
+  .back-btn:hover {
+    background: #475569;
   }
 </style>
 </head>
@@ -97,34 +107,37 @@
 <div class="bg-shape"></div>
 
 <div class="container">
+  <!-- بانر أعلى الصفحة -->
   <img src="https://i.pinimg.com/1200x/e0/5f/2a/e05f2a81cc2be104e082b70f82e2b857.jpg" alt="Banner">
-  <div class="notice">يرجى اكمال عرض واحد، سيتم ارسال الكوينز فورا عند اكمال العرض</div>
 
-  <!-- خيار CPAGrip الجديد -->
+  <!-- العبارة تحت البانر -->
+  <div class="notice">يرجى إكمال عرض واحد، وسيتم إرسال المكافأة فور إتمام العرض</div>
+
+  <!-- خيار 1: Android -->
   <div class="option-card" onclick="window.open('https://singingfiles.com/show.php?l=0&u=2442584&id=62779','_blank')">
-    <span> أكمل العرض الأول للحصول على المكافأة -الاندرويد</span>
-    <a href="https://singingfiles.com/show.php?l=0&u=2442584&id=62779" target="_blank">ابدأ الآن</a>
+    <span>أكمل العرض الأول للحصول على المكافأة - الاندرويد</span>
+    <a href="https://singingfiles.com/show.php?l=0&u=2442584&id=62779" target="_blank" rel="noopener noreferrer">ابدأ الآن</a>
   </div>
 
-  <!-- يمكنك إضافة خيارات أخرى بنفس الطريقة -->
-  <!-- مثال على خيار ثانٍ (يمكنك تغييره إلى أي رابط CPAGrip آخر) -->
-  <!--
+  <!-- خيار 2: Android -->
   <div class="option-card" onclick="window.open('https://singingfiles.com/show.php?l=0&u=2442584&id=70066','_blank')">
-    <span> أكمل العرض الثاني للحصول على المكافأة -الاندرويد</span>
-    <a href="https://singingfiles.com/show.php?l=0&u=2442584&id=70066" target="_blank">ابدأ الآن</a>
+    <span>أكمل العرض الثاني للحصول على المكافأة - الاندرويد</span>
+    <a href="https://singingfiles.com/show.php?l=0&u=2442584&id=70066" target="_blank" rel="noopener noreferrer">ابدأ الآن</a>
   </div>
 
-    <div class="option-card" onclick="window.open('https://singingfiles.com/show.php?l=0&u=2442584&id=62780','_blank')">
-    <span> أكمل العرض الأول للحصول على المكافأة -الايفون</span>
-    <a href="https://singingfiles.com/show.php?l=0&u=2442584&id=62780" target="_blank">ابدأ الآن</a>
+  <!-- خيار 3: iOS -->
+  <div class="option-card" onclick="window.open('https://singingfiles.com/show.php?l=0&u=2442584&id=62780','_blank')">
+    <span>أكمل العرض الأول للحصول على المكافأة - الايفون</span>
+    <a href="https://singingfiles.com/show.php?l=0&u=2442584&id=62780" target="_blank" rel="noopener noreferrer">ابدأ الآن</a>
   </div>
 
-   <div class="option-card" onclick="window.open('https://singingfiles.com/show.php?l=0&u=2442584&id=70067','_blank')">
-    <span> أكمل العرض الثاني للحصول على المكافأة -الايفون</span>
-    <a href="https://singingfiles.com/show.php?l=0&u=2442584&id=70067" target="_blank">ابدأ الآن</a>
+  <!-- خيار 4: iOS -->
+  <div class="option-card" onclick="window.open('https://singingfiles.com/show.php?l=0&u=2442584&id=70067','_blank')">
+    <span>أكمل العرض الثاني للحصول على المكافأة - الايفون</span>
+    <a href="https://singingfiles.com/show.php?l=0&u=2442584&id=70067" target="_blank" rel="noopener noreferrer">ابدأ الآن</a>
   </div>
-  -->
 
+  <!-- زر الرجوع -->
   <a href="index.html" class="back-btn">الرجوع للموقع الرئيسي</a>
 </div>
 
