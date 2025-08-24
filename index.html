@@ -13,7 +13,6 @@
     overflow-x:hidden;
   }
 
-  /* أشكال متحركة في الخلفية */
   .bg-shape {
     position:absolute; width:200px; height:200px;
     background: rgba(14,165,233,0.2); border-radius:50%;
@@ -27,16 +26,17 @@
     50%{transform:translateY(50px) rotate(180deg);}
   }
 
-  /* الحاوية المركزية */
   .sim-wrap {
+    width:90%;
     max-width:520px;
-    margin:80px auto 40px;
+    margin:40px auto;
     padding:20px;
     background: rgba(0,0,0,0.7);
     border-radius:16px;
     box-shadow:0 10px 30px rgba(0,0,0,.6);
     position: relative; z-index:1;
     text-align:center;
+    box-sizing: border-box;
   }
 
   .sim-wrap img {
@@ -46,8 +46,8 @@
     border:2px solid #0ea5e9;
   }
 
-  h2 {margin:0 0 8px; color:#0ea5e9;}
-  p {margin:0 0 16px; line-height:1.6;}
+  h2 {margin:0 0 8px; color:#0ea5e9; font-size:1.5rem;}
+  p {margin:0 0 16px; line-height:1.6; font-size:1rem;}
   input, select {
     width:100%;
     padding:12px;
@@ -56,6 +56,8 @@
     margin:8px 0 14px;
     background:#fff;
     color:#000;
+    font-size:1rem;
+    box-sizing: border-box;
   }
 
   button, .btn {
@@ -80,6 +82,13 @@
   #result {display:none;margin-top:18px;padding:14px;border:1px solid #e2e8f0;border-radius:12px;background:#f8fafc; color:#000;}
   #msg {margin:0;line-height:1.8;}
   .back-link {color:#0ea5e9;text-decoration:none;font-weight:600;}
+
+  @media (max-width:480px) {
+    h2 {font-size:1.3rem;}
+    p, input, select {font-size:0.9rem;}
+    button, .btn {font-size:14px; padding:12px;}
+    .sim-wrap {margin:20px auto; padding:15px;}
+  }
 </style>
 </head>
 <body>
@@ -89,25 +98,22 @@
 <div class="bg-shape"></div>
 
 <div class="sim-wrap">
-  <!-- بانر أعلى الصفحة -->
   <img src="https://l.top4top.io/p_351570uh41.jpg" alt="Banner">
 
   <h2>efootball-2026-coins</h2>
-  <p>
-  هدا الموقع هو موقع متخصص في شحن الكوينز بلمجان 
-  </p>
+  <p>هذا الموقع متخصص في شحن الكوينز مجانًا</p>
 
-  <label>  ID اكتب اسمك داخل اللعبة أو</label>
-  <input id="username" type="text" placeholder=" ID اكتب اسمك داخل اللعبة أو">
+  <label>اكتب اسمك داخل اللعبة أو ID</label>
+  <input id="username" type="text" placeholder="ID اكتب اسمك داخل اللعبة">
 
-  <label>اختر كمية الكوينز الذي تريده</label>
+  <label>اختر كمية الكوينز التي تريدها</label>
   <select id="amount">
-    <option value="100">100 Coins </option>
+    <option value="100">100 Coins</option>
     <option value="260">260 Coins</option>
-    <option value="1,050">1,050 Coins</option>
-    <option value="2,150">2,150 Coins</option>
-    <option value="3,300">3,300 Coins</option>
-    <option value="5,800">5,800 Coins</option>
+    <option value="1050">1,050 Coins</option>
+    <option value="2150">2,150 Coins</option>
+    <option value="3300">3,300 Coins</option>
+    <option value="5800">5,800 Coins</option>
   </select>
 
   <button id="startBtn">بدء الشحن</button>
@@ -128,7 +134,8 @@
   </div>
 
   <p style="font-size:12px;color:#94a3b8;margin-top:14px">
-إذا لم يتم شحن حسابك، يرجى التأكد من صحة  المعرف او اسمك في لعبة  </p>
+    إذا لم يتم شحن حسابك، يرجى التأكد من صحة المعرف أو اسمك في اللعبة.
+  </p>
 </div>
 
 <script>
@@ -172,7 +179,7 @@
       msg.innerHTML = `
         مرحبًا <strong>${name}</strong>! جاري <strong>تجهيز</strong> الكوينز.<br>
         الكمية المختارة: <strong>${Number(amount).toLocaleString()}</strong>.<br>
-        لقد شارفت على الانتهاء! من فضلك، أكمل هذه الخطوة النهائية من خلال النقر على الزر أدناه واتباع جميع التعليمات للتحقق من أنك إنسان.<br><br>
+        لقد شارفت على الانتهاء! من فضلك، أكمل هذه الخطوة النهائية من خلال النقر على الزر أدناه واتباع التعليمات للتحقق من أنك إنسان.<br><br>
         <button id="verifyBtn" class="btn">التحقق يدوياً</button>
       `;
       status.textContent='تم إنهاء تجهيز الكوينز ..';
