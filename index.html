@@ -3,198 +3,226 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>efootball-2026-coins</title>
-  <meta name="verify-admitad" content="32a91a6437" />
-  
+<title>CoinHub - شحن الألعاب</title>
 <style>
   body {
-    margin:0; padding:0;
+    margin:0;
     font-family: system-ui,Segoe UI,Roboto,Arial;
     background: linear-gradient(135deg,#0a0f2b,#001f4d);
     color:#f0f0f0;
     overflow-x:hidden;
   }
 
-  .bg-shape {
-    position:absolute; width:200px; height:200px;
-    background: rgba(14,165,233,0.2); border-radius:50%;
-    animation: float 10s infinite ease-in-out;
-  }
-  .bg-shape:nth-child(1){top:50px;left:-50px;}
-  .bg-shape:nth-child(2){bottom:100px;right:-80px;animation-duration:12s;}
-  .bg-shape:nth-child(3){top:200px;right:50px;animation-duration:15s;}
-  @keyframes float{
-    0%,100%{transform:translateY(0) rotate(0deg);}
-    50%{transform:translateY(50px) rotate(180deg);}
-  }
-
-  .sim-wrap {
-    width:90%;
-    max-width:520px;
-    margin:40px auto;
-    padding:20px;
+  /* الهيدر */
+  header {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:10px 30px;
     background: rgba(0,0,0,0.7);
-    border-radius:16px;
-    box-shadow:0 10px 30px rgba(0,0,0,.6);
-    position: relative; z-index:1;
+    box-shadow:0 2px 8px rgba(0,0,0,.5);
+    z-index:10;
+  }
+  .logo-container {
+    display:flex; align-items:center;
+  }
+  .logo-container img {
+    height:40px;
+    margin-right:10px;
+  }
+  .logo-container h1 {
+    color:#0ea5e9; margin:0; font-size:1.3rem;
+  }
+  nav a {
+    color:#f0f0f0;
+    text-decoration:none;
+    margin-left:20px;
+    font-weight:600;
+    transition:0.3s;
+  }
+  nav a:hover { color:#0ea5e9; }
+
+  /* شبكة الألعاب */
+  .grid {
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap:20px;
+    padding:20px;
+  }
+
+  .card {
+    background: rgba(0,0,0,0.6);
+    border-radius:14px;
+    box-shadow:0 4px 15px rgba(0,0,0,.6);
     text-align:center;
-    box-sizing: border-box;
+    transition: transform 0.2s;
+    cursor:pointer;
   }
-
-  .sim-wrap img {
+  .card:hover {transform: scale(1.05);}
+  .card img {
     width:100%;
-    border-radius:12px;
-    margin-bottom:20px;
-    border:2px solid #0ea5e9;
+    height:140px;
+    object-fit:cover;
+    border-bottom:2px solid #0ea5e9;
   }
-
-  h2 {margin:0 0 8px; color:#0ea5e9; font-size:1.5rem;}
-  p {margin:0 0 16px; line-height:1.6; font-size:1rem;}
-  input, select {
-    width:100%;
-    padding:12px;
-    border:1px solid #ddd;
-    border-radius:12px;
-    margin:8px 0 14px;
-    background:#fff;
-    color:#000;
-    font-size:1rem;
-    box-sizing: border-box;
-  }
-
-  button, .btn {
+  .card h3 {margin:12px 0;color:#0ea5e9;}
+  .btn {
     display:block;
-    width:100%;
-    padding:14px;
-    font-size:16px;
-    font-weight:700;
-    text-align:center;
-    color:#fff;
+    width:80%;
+    margin:10px auto 18px;
+    padding:12px;
     background:#0ea5e9;
+    color:#fff;
     border:none;
     border-radius:12px;
-    cursor:pointer;
+    text-decoration:none;
+    font-weight:600;
     transition:0.3s;
-    margin-top:10px;
   }
-  button:hover, .btn:hover {background:#0284c7; transform:translateY(-2px);}
+  .btn:hover {background:#0284c7; transform:translateY(-2px);}
 
-  #progressWrap {display:none;margin-top:18px;}
-  #bar {height:10px;width:0%;background:#0ea5e9; border-radius:999px;}
-  #result {display:none;margin-top:18px;padding:14px;border:1px solid #e2e8f0;border-radius:12px;background:#f8fafc; color:#000;}
-  #msg {margin:0;line-height:1.8;}
-  .back-link {color:#0ea5e9;text-decoration:none;font-weight:600;}
-
-  @media (max-width:480px) {
-    h2 {font-size:1.3rem;}
-    p, input, select {font-size:0.9rem;}
-    button, .btn {font-size:14px; padding:12px;}
-    .sim-wrap {margin:20px auto; padding:15px;}
+  /* إحصائيات */
+  .stats {
+    display:flex;
+    justify-content:space-around;
+    margin:20px;
+    padding:20px;
+    background: rgba(0,0,0,0.6);
+    border-radius:14px;
+    text-align:center;
   }
+  .stats div {font-size:1.2rem;}
+  .stats div span {display:block; font-size:1.5rem; color:#0ea5e9;}
+
+  /* Footer */
+  footer {
+    text-align:center;
+    padding:20px;
+    background: rgba(0,0,0,0.7);
+    margin-top:30px;
+    color:#94a3b8;
+  }
+
+  /* إشعارات منبثقة */
+  .popup {
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:rgba(14,165,233,0.9);
+    padding:15px 20px;
+    border-radius:12px;
+    color:#fff;
+    font-weight:600;
+    box-shadow:0 4px 10px rgba(0,0,0,.5);
+    display:none;
+    z-index:100;
+  }
+
+  /* إجبار Grid 4x4 على كل الأجهزة */
+  @media(max-width:1200px){.grid{grid-template-columns:repeat(4,1fr);}}
+  @media(max-width:1024px){.grid{grid-template-columns:repeat(4,1fr);}}
+  @media(max-width:768px){.grid{grid-template-columns:repeat(4,1fr);}}
+  @media(max-width:480px){.grid{grid-template-columns:repeat(4,1fr);}}
 </style>
 </head>
 <body>
 
-<div class="bg-shape"></div>
-<div class="bg-shape"></div>
-<div class="bg-shape"></div>
-
-<div class="sim-wrap">
-  <img src="https://l.top4top.io/p_351570uh41.jpg" alt="Banner">
-
-  <h2>efootball-2026-coins</h2>
-  <p>هذا الموقع متخصص في شحن الكوينز مجانًا</p>
-
-  <label>اكتب اسمك داخل اللعبة أو ID</label>
-  <input id="username" type="text" placeholder="ID اكتب اسمك داخل اللعبة">
-
-  <label>اختر كمية الكوينز التي تريدها</label>
-  <select id="amount">
-    <option value="100">100 Coins</option>
-    <option value="260">260 Coins</option>
-    <option value="1050">1,050 Coins</option>
-    <option value="2150">2,150 Coins</option>
-    <option value="3300">3,300 Coins</option>
-    <option value="5800">5,800 Coins</option>
-  </select>
-
-  <button id="startBtn">بدء الشحن</button>
-
-  <div id="progressWrap">
-    <div style="display:flex;justify-content:space-between;margin:0 0 6px">
-      <span>التقدّم</span><span id="pct">0%</span>
-    </div>
-    <div style="height:10px;background:#eee;border-radius:999px;overflow:hidden">
-      <div id="bar"></div>
-    </div>
-    <p id="status" style="color:#666;margin-top:10px">جارٍ التحقق ...</p>
+<header>
+  <div class="logo-container">
+    <img src="https://i.pinimg.com/originals/8d/61/b3/8d61b33b0110f418d3a86ef1c16a0411.gif" alt="Logo">
+    <h1>CoinHub</h1>
   </div>
+  <nav>
+    <a href="#">الرئيسية</a>
+    <a href="#">الألعاب</a>
+    <a href="#">اتصل بنا</a>
+  </nav>
+</header>
 
-  <div id="result">
-    <h3>النتيجة</h3>
-    <p id="msg"></p>
-  </div>
-
-  <p style="font-size:12px;color:#94a3b8;margin-top:14px">
-    إذا لم يتم شحن حسابك، يرجى التأكد من صحة المعرف أو اسمك في اللعبة.
-  </p>
+<div class="stats">
+  <div>🔥 المستخدمون الآن <span id="users">182</span></div>
+  <div>💰 مجموع الكوينز الموزعة <span id="coins">2,074,802</span></div>
 </div>
 
+<div class="grid">
+  <div class="card" onclick="window.location.href='game.html?name=Free Fire'">
+    <img src="https://h.top4top.io/p_3524ca3cp1.png" alt="Free Fire">
+    <h3>Free Fire</h3>
+    <a href="game.html?name=Free Fire" class="btn">شحن</a>
+  </div>
+  <div class="card" onclick="window.location.href='game.html?name=PUBG'">
+    <img src="https://a.top4top.io/p_3524vmckx1.png" alt="PUBG">
+    <h3>PUBG</h3>
+    <a href="game.html?name=PUBG" class="btn">شحن</a>
+  </div>
+  <div class="card" onclick="window.location.href='game.html?name=efootball-2026-'">
+    <img src="https://i.pinimg.com/1200x/e0/5f/2a/e05f2a81cc2be104e082b70f82e2b857.jpg" alt="efootball-2026-">
+    <h3>efootball-2026-</h3>
+    <a href="game.html?name=efootball-2026-" class="btn">شحن</a>
+  </div>
+  <div class="card" onclick="window.location.href='game.html?name=FIFA Mobile'">
+    <img src="https://j.top4top.io/p_352412oa81.png" alt="FIFA Mobile">
+    <h3>FIFA Mobile</h3>
+    <a href="game.html?name=FIFA Mobile" class="btn">شحن</a>
+  </div>
+  <div class="card" onclick="window.location.href='game.html?name=MONOPOLY GO!'">
+    <img src="https://i.pinimg.com/1200x/ab/a7/c7/aba7c702a2e03af4a4484dad254d8ccb.jpg" alt="MONOPOLY GO!">
+    <h3>MONOPOLY GO!</h3>
+    <a href="game.html?name=MONOPOLY GO!" class="btn">شحن</a>
+  </div>
+  <div class="card" onclick="window.location.href='game.html?name=Parchisi STAR'">
+    <img src="https://i.top4top.io/p_35242a89o1.png" alt="Parchisi STAR">
+    <h3>Parchisi STAR</h3>
+    <a href="game.html?name=Parchisi STAR" class="btn">شحن</a>
+  </div>
+  <div class="card" onclick="window.location.href='game.html?name=Honor Of Kings'">
+    <img src="https://i.pinimg.com/736x/54/da/4b/54da4bee5903326d8add076c479a4f88.jpg" alt="Honor Of Kings">
+    <h3>Honor Of Kings</h3>
+    <a href="game.html?name=Honor Of Kings" class="btn">شحن</a>
+  </div>
+  <div class="card" onclick="window.location.href='game.html?name=Roblox'">
+    <img src="https://i.pinimg.com/1200x/0d/1e/1a/0d1e1a3e1664dc03c3b0c279c4797d28.jpg" alt="Roblox">
+    <h3>Roblox</h3>
+    <a href="game.html?name=Roblox" class="btn">شحن</a>
+  </div>
+</div>
+
+<div id="popup" class="popup"></div>
+
+<footer>
+  © 2025 CoinHub. جميع الحقوق محفوظة.
+</footer>
+
 <script>
-(function(){
-  const startBtn = document.getElementById('startBtn');
-  const progressWrap = document.getElementById('progressWrap');
-  const bar = document.getElementById('bar');
-  const pct = document.getElementById('pct');
-  const status = document.getElementById('status');
-  const result = document.getElementById('result');
-  const msg = document.getElementById('msg');
-
-  function simulateProgress(steps, onDone){
-    let p = 0;
-    progressWrap.style.display = 'block';
-    status.textContent = 'جارٍ الشحن...';
-    const tasks = ['الاتصال بالخادم ','معالجة الطلب ','التحقق النهائي '];
-    let i = 0;
-    const timer = setInterval(()=>{
-      p += Math.random()*12;
-      if(p > 100) p = 100;
-      bar.style.width = p.toFixed(0)+'%';
-      pct.textContent = p.toFixed(0)+'%';
-      if(p > (i+1)*33 && i < tasks.length) status.textContent = tasks[i++];
-      if(p >= 100){ clearInterval(timer); onDone(); }
-    }, 300);
+  // إشعارات منبثقة عشوائية
+  const popup = document.getElementById('popup');
+  const messages = [
+ "مستخدم جديد حصل على 1,050 كوينز!",
+    "شحن مجاني للعبة Free Fire!",
+    "جاري تجهيز الكوينز للعبة PUBG...",
+    "تم شحن 2,150 كوينز للعبة Roblox!",
+    "لاعب جديد بدأ شحن efootball-2026-!"
+  ];
+  function showPopup() {
+    const msg = messages[Math.floor(Math.random() * messages.length)];
+    popup.textContent = msg;
+    popup.style.display = 'block';
+    setTimeout(()=>{ popup.style.display='none'; }, 3000);
   }
+  setInterval(showPopup, 7000);
 
-  startBtn.addEventListener('click', ()=>{
-    const name = document.getElementById('username').value.trim();
-    const amount = document.getElementById('amount').value;
-
-    result.style.display='none';
-    bar.style.width='0%';
-    pct.textContent='0%';
-
-    if(!name){ alert('رجاءً اكتب اسمك داخل اللعبة .'); return; }
-
-    simulateProgress(3, ()=>{
-      result.style.display='block';
-      msg.innerHTML = `
-        مرحبًا <strong>${name}</strong>! جاري <strong>تجهيز</strong> الكوينز.<br>
-        الكمية المختارة: <strong>${Number(amount).toLocaleString()}</strong>.<br>
-        لقد شارفت على الانتهاء! من فضلك، أكمل هذه الخطوة النهائية من خلال النقر على الزر أدناه واتباع التعليمات للتحقق من أنك إنسان.<br><br>
-        <button id="verifyBtn" class="btn">التحقق يدوياً</button>
-      `;
-      status.textContent='تم إنهاء تجهيز الكوينز ..';
-
-      const verifyBtn = document.getElementById('verifyBtn');
-      verifyBtn.addEventListener('click', ()=>{
-        window.location.href='verify.html';
-      });
-    });
-  });
-})();
+  // تحريك الإحصائيات
+  let usersEl = document.getElementById('users');
+  let coinsEl = document.getElementById('coins');
+  let users = 182;
+  let coins = 2074802;
+  setInterval(()=>{
+    users += Math.floor(Math.random()*3);
+    coins += Math.floor(Math.random()*500);
+    usersEl.textContent = users;
+    coinsEl.textContent = coins.toLocaleString();
+  }, 3000);
 </script>
 
 </body>
 </html>
-
