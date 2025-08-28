@@ -3,92 +3,85 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>شحن الكوينز</title>
+<title>شحن الكوينز - CoinHub</title>
 <style>
-  body {
-    margin:0; padding:0;
-    font-family: system-ui,Segoe UI,Roboto,Arial;
-    background: linear-gradient(135deg,#0a0f2b,#001f4d);
-    color:#f0f0f0;
-    overflow-x:hidden;
-  }
+  /* ===== Reset & Base ===== */
+  * {margin:0;padding:0;box-sizing:border-box;font-family:system-ui,Segoe UI,Roboto,Arial;}
+  body {background: linear-gradient(135deg,#0a0f2b,#001f4d);color:#f0f0f0;overflow-x:hidden;}
 
-  .bg-shape {
-    position:absolute; width:200px; height:200px;
-    background: rgba(14,165,233,0.2); border-radius:50%;
-    animation: float 10s infinite ease-in-out;
-  }
+  /* ===== Animated Background ===== */
+  .bg-shape {position:absolute;width:200px;height:200px;background: rgba(14,165,233,0.2);border-radius:50%;animation: float 15s infinite ease-in-out;z-index:0;}
   .bg-shape:nth-child(1){top:50px;left:-50px;}
-  .bg-shape:nth-child(2){bottom:100px;right:-80px;animation-duration:12s;}
-  .bg-shape:nth-child(3){top:200px;right:50px;animation-duration:15s;}
-  @keyframes float{
-    0%,100%{transform:translateY(0) rotate(0deg);}
-    50%{transform:translateY(50px) rotate(180deg);}
-  }
+  .bg-shape:nth-child(2){bottom:100px;right:-80px;animation-duration:18s;}
+  .bg-shape:nth-child(3){top:200px;right:50px;animation-duration:20s;}
+  @keyframes float{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(50px) rotate(180deg);}}
 
-  .sim-wrap {
-    max-width:520px;
-    margin:80px auto 40px;
-    padding:20px;
-    background: rgba(0,0,0,0.7);
-    border-radius:16px;
-    box-shadow:0 10px 30px rgba(0,0,0,.6);
-    position: relative; z-index:1;
-    text-align:center;
-  }
+  /* ===== Stats Bar ===== */
+  .stats {display:flex;justify-content:center;gap:30px;padding:10px 20px;background:rgba(0,0,0,0.7);border-bottom:2px solid #0ea5e9;flex-wrap:wrap;}
+  .stats div {text-align:center;font-size:16px;}
+  .stats div span {font-weight:700;color:#0ea5e9;}
 
-  .sim-wrap img {
-    width:100%;
-    border-radius:12px;
-    margin-bottom:20px;
-    border:2px solid #0ea5e9;
-    max-height:250px; object-fit:cover;
-  }
+  /* ===== Navbar ===== */
+  .navbar {width:100%; padding:10px 20px; display:flex; justify-content:space-between; align-items:center; background:rgba(0,0,0,0.8); border-bottom:2px solid #0ea5e9; position:relative; z-index:2;}
+  .navbar img {height:50px;}
+  .nav-links {display:flex; gap:20px;}
+  .nav-links a {color:#f0f0f0;text-decoration:none;font-weight:600;transition:0.3s;}
+  .nav-links a:hover {color:#0ea5e9;}
 
-  h2 {margin:0 0 8px; color:#0ea5e9;}
-  p {margin:0 0 16px; line-height:1.6;}
-  input, select {
-    width:100%;
-    padding:12px;
-    border:1px solid #ddd;
-    border-radius:12px;
-    margin:8px 0 14px;
-    background:#fff;
-    color:#000;
-  }
-
-  button, .btn {
-    display:block;
-    width:100%;
-    padding:14px;
-    font-size:16px;
-    font-weight:700;
-    text-align:center;
-    color:#fff;
-    background:#0ea5e9;
-    border:none;
-    border-radius:12px;
-    cursor:pointer;
-    transition:0.3s;
-    margin-top:10px;
-  }
-  button:hover, .btn:hover {background:#0284c7; transform:translateY(-2px);}
-
+  /* ===== Simulation Wrapper ===== */
+  .sim-wrap {max-width:520px;margin:40px auto 40px;padding:20px;background: rgba(0,0,0,0.7);border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.6);position: relative; z-index:1;text-align:center;}
+  .sim-wrap img {width:100%;border-radius:12px;margin-bottom:20px;border:2px solid #0ea5e9;max-height:250px;object-fit:cover;transition: transform 0.3s ease;}
+  h2 {margin:0 0 8px;color:#0ea5e9;}
+  p {margin:0 0 16px;line-height:1.6;}
+  input, select {width:100%;padding:12px;border:1px solid #ddd;border-radius:12px;margin:8px 0 14px;background:#fff;color:#000;font-size:16px;}
+  button, .btn {display:block;width:100%;padding:14px;font-size:16px;font-weight:700;text-align:center;color:#fff;background:#0ea5e9;border:none;border-radius:12px;cursor:pointer;transition:0.3s;margin-top:10px;}
+  button:hover, .btn:hover {background:#0284c7;transform:translateY(-2px);}
   #progressWrap {display:none;margin-top:18px;}
-  #bar {height:10px;width:0%;background:#0ea5e9; border-radius:999px;}
-  #result {display:none;margin-top:18px;padding:14px;border:1px solid #e2e8f0;border-radius:12px;background:#f8fafc; color:#000;}
+  #bar {height:10px;width:0%;background:#0ea5e9;border-radius:999px;}
+  #result {display:none;margin-top:18px;padding:14px;border:1px solid #e2e8f0;border-radius:12px;background:#f8fafc;color:#000;}
   #msg {margin:0;line-height:1.8;}
+
+  /* ===== Footer ===== */
+  .footer {background:rgba(0,0,0,0.8);padding:20px 10px;margin-top:40px;text-align:center;color:#f0f0f0;border-top:2px solid #0ea5e9;}
+  .footer img {height:40px;margin-bottom:10px;}
+  .footer p, .footer a {color:#f0f0f0;text-decoration:none;}
+  .footer a:hover {color:#0ea5e9;}
+
+  /* ===== Responsive ===== */
+  @media(max-width:1024px){.navbar img{height:45px;}}
+  @media(max-width:768px){.navbar img{height:40px;}.stats{flex-direction:column;gap:8px;}}
+  @media(max-width:480px){.navbar img{height:35px;}.nav-links{display:none;}}
 </style>
 </head>
 <body>
 
+<!-- Background Shapes -->
 <div class="bg-shape"></div>
 <div class="bg-shape"></div>
 <div class="bg-shape"></div>
 
+<!-- Stats Bar أعلى الصفحة -->
+<div class="stats">
+  <div>👥 متصل الآن: <span id="users">178</span></div>
+  <div>💰 إجمالي الكوينز: <span id="coins">2,078,432</span></div>
+</div>
+
+<!-- Navbar -->
+<div class="navbar">
+  <img src="https://i.pinimg.com/originals/8d/61/b3/8d61b33b0110f418d3a86ef1c16a0411.gif" alt="Logo">
+  <div class="nav-links">
+    <a href="index.html">الرئيسية</a>
+    <a href="index.html#games">الألعاب</a>
+    <a href="contact.html">اتصل بنا</a>
+  </div>
+</div>
+
+<!-- Return Button -->
+<a href="index.html" class="btn" style="max-width:200px;margin:20px auto;display:block;">⬅ الرجوع إلى القائمة الرئيسية</a>
+
+<!-- Main Simulation Wrapper -->
 <div class="sim-wrap">
   <img id="gameImg" src="" alt="Banner">
-
   <h2 id="gameTitle">...</h2>
   <p>هذا الموقع متخصص في شحن الكوينز مجانًا.</p>
 
@@ -97,12 +90,12 @@
 
   <label>اختر كمية الكوينز التي تريدها</label>
   <select id="amount">
-    <option value="100">100 Coins </option>
+    <option value="100">100 Coins</option>
     <option value="260">260 Coins</option>
-    <option value="1,050">1,050 Coins</option>
-    <option value="2,150">2,150 Coins</option>
-    <option value="3,300">3,300 Coins</option>
-    <option value="5,800">5,800 Coins</option>
+    <option value="1050">1,050 Coins</option>
+    <option value="2150">2,150 Coins</option>
+    <option value="3300">3,300 Coins</option>
+    <option value="5800">5,800 Coins</option>
   </select>
 
   <button id="startBtn">بدء الشحن</button>
@@ -123,28 +116,33 @@
   </div>
 </div>
 
+<!-- Footer -->
+<div class="footer">
+  <img src="https://i.pinimg.com/originals/8d/61/b3/8d61b33b0110f418d3a86ef1c16a0411.gif" alt="Logo">
+  <p>&copy; 2025 CoinHub. جميع الحقوق محفوظة.</p>
+  <p><a href="#">سياسة الخصوصية</a> | <a href="#">شروط الاستخدام</a> | <a href="contact.html">اتصل بنا</a></p>
+</div>
+
 <script>
 (function(){
-  // قاعدة بيانات صور الألعاب
+  // Games images
   const games = {
-    "Free Fire": "https://h.top4top.io/p_3524ca3cp1.png",
-    "PUBG": "https://a.top4top.io/p_3524vmckx1.png",
-    "efootball-2026-": "https://i.pinimg.com/1200x/e0/5f/2a/e05f2a81cc2be104e082b70f82e2b857.jpg",
-    "FIFA Mobile": "https://j.top4top.io/p_352412oa81.png",
-    "MONOPOLY GO!": "https://i.pinimg.com/1200x/ab/a7/c7/aba7c702a2e03af4a4484dad254d8ccb.jpg",
-    "Parchisi STAR": "https://i.top4top.io/p_35242a89o1.png",
-    "Honor Of Kings": "https://i.pinimg.com/736x/54/da/4b/54da4bee5903326d8add076c479a4f88.jpg",
-    "Roblox": "https://i.pinimg.com/1200x/0d/1e/1a/0d1e1a3e1664dc03c3b0c279c4797d28.jpg"
+    "Free Fire":"https://h.top4top.io/p_3524ca3cp1.png",
+    "PUBG":"https://a.top4top.io/p_3524vmckx1.png",
+    "efootball-2026-":"https://i.pinimg.com/1200x/e0/5f/2a/e05f2a81cc2be104e082b70f82e2b857.jpg",
+    "FIFA Mobile":"https://j.top4top.io/p_352412oa81.png",
+    "MONOPOLY GO!":"https://i.pinimg.com/1200x/ab/a7/c7/aba7c702a2e03af4a4484dad254d8ccb.jpg",
+    "Parchisi STAR":"https://i.top4top.io/p_35242a89o1.png",
+    "Honor Of Kings":"https://i.pinimg.com/736x/54/da/4b/54da4bee5903326d8add076c479a4f88.jpg",
+    "Roblox":"https://i.pinimg.com/1200x/0d/1e/1a/0d1e1a3e1664dc03c3b0c279c4797d28.jpg"
   };
 
-  // قراءة اسم اللعبة من الرابط
   const params = new URLSearchParams(window.location.search);
   const gameName = params.get("name") || "لعبة غير معروفة";
-
   document.getElementById("gameTitle").textContent = gameName;
   document.getElementById("gameImg").src = games[gameName] || "https://via.placeholder.com/400x200?text=No+Image";
 
-  // محاكاة الشحن
+  // Simulate progress
   const startBtn = document.getElementById('startBtn');
   const progressWrap = document.getElementById('progressWrap');
   const bar = document.getElementById('bar');
@@ -154,34 +152,25 @@
   const msg = document.getElementById('msg');
 
   function simulateProgress(onDone){
-    let p = 0;
-    progressWrap.style.display = 'block';
-    status.textContent = 'جارٍ الشحن...';
-    const tasks = ['الاتصال بالخادم','معالجة الطلب','التحقق النهائي'];
-    let i = 0;
-    const timer = setInterval(()=>{
-      p += Math.random()*12;
-      if(p > 100) p = 100;
-      bar.style.width = p.toFixed(0)+'%';
-      pct.textContent = p.toFixed(0)+'%';
-      if(p > (i+1)*33 && i < tasks.length) status.textContent = tasks[i++];
-      if(p >= 100){ clearInterval(timer); onDone(); }
-    }, 300);
+    let p=0; progressWrap.style.display='block'; status.textContent='جارٍ الشحن...';
+    const tasks=['الاتصال بالخادم','معالجة الطلب','التحقق النهائي'];
+    let i=0;
+    const timer=setInterval(()=>{
+      p+=Math.random()*12; if(p>100)p=100;
+      bar.style.width=p.toFixed(0)+'%'; pct.textContent=p.toFixed(0)+'%';
+      if(p>(i+1)*33 && i<tasks.length) status.textContent=tasks[i++];
+      if(p>=100){clearInterval(timer);onDone();}
+    },300);
   }
 
   startBtn.addEventListener('click', ()=>{
-    const name = document.getElementById('username').value.trim();
-    const amount = document.getElementById('amount').value;
-
-    result.style.display='none';
-    bar.style.width='0%';
-    pct.textContent='0%';
-
-    if(!name){ alert('رجاءً اكتب اسمك داخل اللعبة.'); return; }
-
+    const name=document.getElementById('username').value.trim();
+    const amount=document.getElementById('amount').value;
+    result.style.display='none'; bar.style.width='0%'; pct.textContent='0%';
+    if(!name){alert('رجاءً اكتب اسمك داخل اللعبة.'); return;}
     simulateProgress(()=>{
       result.style.display='block';
-      msg.innerHTML = `
+      msg.innerHTML=`
         مرحبًا <strong>${name}</strong>! تم تجهيز الكوينز.<br>
         اللعبة: <strong>${gameName}</strong><br>
         الكمية المختارة: <strong>${amount}</strong>.<br><br>
@@ -190,6 +179,16 @@
       status.textContent='تم إنهاء تجهيز الكوينز ..';
     });
   });
+
+  // Dynamic stats
+  let users = 178; let coins = 2078432;
+  function updateStats(){
+    let uChange=Math.floor(Math.random()*5)-2; users=Math.max(100,users+uChange);
+    document.getElementById('users').textContent=users.toLocaleString();
+    let cChange=Math.floor(Math.random()*2000)+500; coins+=cChange;
+    document.getElementById('coins').textContent=coins.toLocaleString();
+  }
+  setInterval(updateStats,3000);
 })();
 </script>
 
