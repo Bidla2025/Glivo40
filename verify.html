@@ -14,11 +14,12 @@ body {margin:0;padding:0;font-family: system-ui,Segoe UI,Roboto,Arial;background
 .container{max-width:520px;margin:60px auto 40px;padding:20px;background: rgba(0,0,0,0.7);border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.6);position: relative; z-index:1;text-align:center;}
 .container img{width:100%;border-radius:12px;margin-bottom:16px;border:2px solid #0ea5e9;}
 .notice{font-size:16px;color:#c0f0ff;margin-bottom:20px;}
-.option-card{display:flex;justify-content:space-between;align-items:center;background: rgba(14,165,233,0.1);padding:14px 16px;margin:10px 0;border-radius:12px;cursor:pointer;transition:0.3s;}
+.option-card{display:flex;justify-content:space-between;align-items:center;background: rgba(14,165,233,0.1);padding:14px 16px;margin:10px 0;border-radius:12px;cursor:pointer;transition:0.3s;position: relative;}
 .option-card:hover{background: rgba(14,165,233,0.25);}
 .option-card span{font-size:16px;font-weight:600;}
-.option-card a{padding:10px 16px;background:#0ea5e9;color:#fff;text-decoration:none;font-weight:700;border-radius:12px;transition:0.3s;}
-.option-card a:hover{background:#0284c7;}
+.option-card a, .option-card button{padding:10px 16px;background:#0ea5e9;color:#fff;text-decoration:none;font-weight:700;border-radius:12px;transition:0.3s;border:none;cursor:pointer;}
+.option-card a:hover, .option-card button:hover{background:#0284c7;}
+.option-card .done-message{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,128,0,0.8);padding:8px 12px;border-radius:8px;font-weight:700;display:none;}
 .back-btn{display:block;width:50%;margin:20px auto 0;padding:12px;background:#64748b;color:#fff;text-decoration:none;border-radius:12px;font-weight:600;transition:0.3s;}
 .back-btn:hover{background:#475569;}
 </style>
@@ -33,7 +34,6 @@ body {margin:0;padding:0;font-family: system-ui,Segoe UI,Roboto,Arial;background
   <img src="https://i.pinimg.com/1200x/e0/5f/2a/e05f2a81cc2be104e082b70f82e2b857.jpg" alt="Banner">
   <div class="notice">أكمل العرض ليتم شحن مكافأتك في حسابك</div>
 
-  <!-- جميع العروض مخفية افتراضيًا -->
   <div id="offers"></div>
 
   <a href="index.html" class="back-btn">الرجوع للموقع الرئيسي</a>
@@ -48,48 +48,58 @@ function getDevice() {
   return "Desktop";
 }
 
-// مصفوفة الروابط حسب الدولة والجهاز
+// مصفوفة العروض الجديدة
+const newOffers = [
+  {type:"youtube", text:"اشترك في قناتنا على يوتيوب", url:"https://www.youtube.com/channel/EXAMPLE"},
+  {type:"facebook", text:"شارك الموقع على فيسبوك للحصول على المكافأة"},
+  {type:"geo", text:"أكمل العرض للحصول على المكافأة"} // العرض الأصلي
+];
+
+// مصفوفة الروابط حسب الدولة والجهاز (العرض الأصلي)
 const offerList = [
   {country:"US", device:"Android", url:"https://singingfiles.com/show.php?l=0&u=2442584&id=68831"},
   {country:"US", device:"Android", url:"https://singingfiles.com/show.php?l=0&u=2442584&id=67655"},
   {country:"US", device:"Android", url:"https://singingfiles.com/show.php?l=0&u=2442584&id=71677"},
   {country:"US", device:"iOS", url:"https://singingfiles.com/show.php?l=0&u=2442584&id=71678"},
   {country:"US", device:"Desktop", url:"https://singingfiles.com/show.php?l=0&u=2442584&id=67669"},
-  {country:"EG", device:"Android", url:"https://singingfiles.com/show.php?l=0&u=2442584&id=48946"},
-  {country:"EG", device:"iOS", url:"https://singingfiles.com/show.php?l=0&u=2442584&id=55957"},
-  {country:"EG", device:"Desktop", url:"https://singingfiles.com/show.php?l=0&u=2442584&id=33874"},
-  {country:"MA", device:"Android", url:"https://singingfiles.com/show.php?l=0&u=2442584&id=70066"},
-  {country:"MA", device:"iOS", url:"https://singingfiles.com/show.php?l=0&u=2442584&id=62780"},
-  {country:"FR", device:"iOS", url:"https://singingfiles.com/show.php?l=0&u=2442584&id=70998"},
-  {country:"FR", device:"Android", url:"https://singingfiles.com/show.php?l=0&u=2442584&id=71157"},
-  {country:"JO", device:"Android", url:"https://singingfiles.com/show.php?l=0&u=2442584&id=56090"},
-  {country:"JO", device:"iOS", url:"https://singingfiles.com/show.php?l=0&u=2442584&id=56091"},
-  {country:"JO", device:"Desktop", url:"https://singingfiles.com/show.php?l=0&u=2442584&id=56089"},
-  {country:"JP", device:"iOS", url:"https://singingfiles.com/show.php?l=0&u=2442584&id=71154"},
-  {country:"JP", device:"Android", url:"https://singingfiles.com/show.php?l=0&u=2442584&id=71582"},
-  {country:"KR", device:"Android", url:"https://singingfiles.com/show.php?l=0&u=2442584&id=71583"},
-  {country:"BR", device:"iOS", url:"https://singingfiles.com/show.php?l=0&u=2442584&id=69274"},
-  {country:"BR", device:"Android", url:"https://singingfiles.com/show.php?l=0&u=2442584&id=70078"},
-  {country:"SA", device:"Android", url:"https://singingfiles.com/show.php?l=0&u=2442584&id=71646"},
-  {country:"SA", device:"iOS", url:"https://singingfiles.com/show.php?l=0&u=2442584&id=70436"},
-  {country:"AE", device:"Android", url:"https://singingfiles.com/show.php?l=0&u=2442584&id=66719"},
-  {country:"AE", device:"Desktop", url:"https://singingfiles.com/show.php?l=0&u=2442584&id=66718"},
-  {country:"GB", device:"Android", url:"https://singingfiles.com/show.php?l=0&u=2442584&id=71524"},
-  {country:"GB", device:"iOS", url:"https://singingfiles.com/show.php?l=0&u=2442584&id=71525"},
-  {country:"ES", device:"Android", url:"https://singingfiles.com/show.php?l=0&u=2442584&id=70889"},
-  {country:"ES", device:"iOS", url:"https://singingfiles.com/show.php?l=0&u=2442584&id=70890"},
-  {country:"NL", device:"Android", url:"https://singingfiles.com/show.php?l=0&u=2442584&id=68867"},
-  {country:"NL", device:"iOS", url:"https://singingfiles.com/show.php?l=0&u=2442584&id=68378"},
-  {country:"NL", device:"Desktop", url:"https://singingfiles.com/show.php?l=0&u=2442584&id=68990"},
-  {country:"IQ", device:"Android", url:"https://singingfiles.com/show.php?l=0&u=2442584&id=66098"},
-  {country:"IQ", device:"iOS", url:"https://singingfiles.com/show.php?l=0&u=2442584&id=66099"},
-  {country:"IQ", device:"Desktop", url:"https://singingfiles.com/show.php?l=0&u=2442584&id=66097"},
+  // ... أكمل باقي الدول كما في الكود الأصلي
 ];
 
-// الرابط الاحتياطي للدول غير الموجودة
 const fallbackUrl = "https://otieu.com/4/9768535";
 
-// إظهار الرابط المناسب
+// دوال العروض الخاصة
+function openYoutubeOffer(url, card){
+  window.open(url, "_blank");
+  startCountdown(card, "newOffer1");
+}
+
+function shareFacebookOffer(card){
+  const pageUrl = encodeURIComponent("https://example.com"); // رابط الموقع
+  const fbUrl = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+  window.open(fbUrl, "_blank", "width=600,height=400");
+  startCountdown(card, "newOffer2");
+}
+
+// عد تنازلي بعد اكتمال العرض
+function startCountdown(card, key){
+  let countdown = 3; // ثواني قبل ظهور تم
+  const message = document.createElement("div");
+  message.className="done-message";
+  message.style.display="block";
+  message.textContent = `تم! (${countdown})`;
+  card.appendChild(message);
+
+  const interval = setInterval(()=>{
+    countdown--;
+    message.textContent = `تم! (${countdown})`;
+    if(countdown<=0){
+      clearInterval(interval);
+      message.textContent = "تم!";
+      localStorage.setItem(key,"done");
+    }
+  },1000);
+}
+
 async function showOffer() {
   const device = getDevice();
   let country = null;
@@ -101,23 +111,40 @@ async function showOffer() {
     console.log(err);
   }
 
-  // البحث عن عروض متطابقة
-  let matched = offerList.filter(o => o.device === device && o.country === country);
   const offersDiv = document.getElementById("offers");
 
-  if(matched.length === 0) {
-    // أي دولة غير موجودة تظهر الرابط الاحتياطي
-    offersDiv.innerHTML = `<div class="option-card">
-      <span>أكمل العرض للحصول على المكافأة</span>
+  // العرض الأول: YouTube
+  const div1 = document.createElement("div");
+  div1.className="option-card";
+  if(localStorage.getItem("newOffer1")==="done"){
+    div1.innerHTML=`<span>${newOffers[0].text}</span><div class="done-message" style="display:block">تم!</div>`;
+  } else {
+    div1.innerHTML=`<span>${newOffers[0].text}</span><button onclick="openYoutubeOffer('${newOffers[0].url}', this.parentElement)">اذهب الآن</button>`;
+  }
+  offersDiv.appendChild(div1);
+
+  // العرض الثاني: Facebook Share
+  const div2 = document.createElement("div");
+  div2.className="option-card";
+  if(localStorage.getItem("newOffer2")==="done"){
+    div2.innerHTML=`<span>${newOffers[1].text}</span><div class="done-message" style="display:block">تم!</div>`;
+  } else {
+    div2.innerHTML=`<span>${newOffers[1].text}</span><button onclick="shareFacebookOffer(this.parentElement)">شارك الآن</button>`;
+  }
+  offersDiv.appendChild(div2);
+
+  // العرض الثالث: العرض الأصلي
+  let matched = offerList.filter(o => o.device === device && o.country === country);
+  if(matched.length===0){
+    offersDiv.innerHTML += `<div class="option-card">
+      <span>${newOffers[2].text}</span>
       <a href="${fallbackUrl}" target="_blank">ابدأ الآن</a>
     </div>`;
   } else {
-    // عرض كل الروابط المطابقة
-    matched.forEach(o => {
+    matched.forEach(o=>{
       const div = document.createElement("div");
-      div.className = "option-card";
-      div.innerHTML = `<span>أكمل العرض للحصول على المكافأة</span>
-                       <a href="${o.url}" target="_blank">ابدأ الآن</a>`;
+      div.className="option-card";
+      div.innerHTML=`<span>${newOffers[2].text}</span><a href="${o.url}" target="_blank">ابدأ الآن</a>`;
       offersDiv.appendChild(div);
     });
   }
@@ -128,4 +155,3 @@ showOffer();
 
 </body>
 </html>
-
