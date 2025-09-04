@@ -10,6 +10,19 @@
 <meta name="keywords" content="شحن الألعاب مجانا, شحن فري فاير, شحن ببجي, شدات, في بوكس, شحن روبلوكس, شحن تيك توك, شحن كول أوف ديوتي, شحن ماينكرافت, free fire, pubg, fortnite, roblox, tiktok coins">
 <meta name="robots" content="index,follow">
 
+<!-- ✅ Open Graph -->
+<meta property="og:title" content="شحن الألعاب مجانا | فري فاير - ببجي - فورتنايت">
+<meta property="og:description" content="شحن مجاني لجواهر فري فاير، شدات ببجي، في بوكس فورتنايت، روبوكس، وتيك توك كوينز.">
+<meta property="og:image" content="https://f.top4top.io/p_352742cfu1.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://example.com">
+
+<!-- ✅ Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="شحن الألعاب مجانا | فري فاير - ببجي - فورتنايت">
+<meta name="twitter:description" content="شحن مجاني لجواهر فري فاير، شدات ببجي، في بوكس فورتنايت، روبوكس، وتيك توك كوينز.">
+<meta name="twitter:image" content="https://f.top4top.io/p_352742cfu1.png">
+
 <style>
 body {margin:0;padding:0;font-family: system-ui,Segoe UI,Roboto,Arial;background: linear-gradient(135deg,#0a0f2b,#001f4d);color:#f0f0f0;overflow-x:hidden;}
 .bg-shape {position:absolute;width:200px;height:200px;background: rgba(14,165,233,0.2);border-radius:50%;animation: float 10s infinite ease-in-out;}
@@ -23,9 +36,9 @@ body {margin:0;padding:0;font-family: system-ui,Segoe UI,Roboto,Arial;background
 .option-card{display:flex;justify-content:space-between;align-items:center;background: rgba(14,165,233,0.1);padding:14px 16px;margin:10px 0;border-radius:12px;cursor:pointer;transition:0.3s;position: relative;}
 .option-card:hover{background: rgba(14,165,233,0.25);}
 .option-card span{font-size:16px;font-weight:600;}
-.option-card a, .option-card button{padding:10px 16px;background:#0ea5e9;color:#fff;text-decoration:none;font-weight:700;border-radius:12px;transition:0.3s;border:none;cursor:pointer;}
-.option-card a:hover, .option-card button:hover{background:#0284c7;}
-.option-card .done-message{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,128,0,0.9);padding:8px 12px;border-radius:8px;font-weight:700;display:none;color:#fff;}
+.option-card button,.option-card a{padding:10px 16px;background:#0ea5e9;color:#fff;text-decoration:none;font-weight:700;border-radius:12px;transition:0.3s;border:none;cursor:pointer;}
+.option-card button:hover,.option-card a:hover{background:#0284c7;}
+.done-btn{background:green !important;cursor:default;}
 .back-btn{display:block;width:50%;margin:20px auto 0;padding:12px;background:#64748b;color:#fff;text-decoration:none;border-radius:12px;font-weight:600;transition:0.3s;}
 .back-btn:hover{background:#475569;}
 /* ✅ نص SEO */
@@ -48,7 +61,7 @@ body {margin:0;padding:0;font-family: system-ui,Segoe UI,Roboto,Arial;background
   <a href="index.html" class="back-btn">الرجوع للموقع الرئيسي</a>
 </div>
 
-<!-- ✅ نص SEO مدمج -->
+<!-- ✅ نص SEO -->
 <div class="seo-text">
   <h2>شحن الألعاب مجانا لجميع الدول</h2>
   <p>الآن يمكنك شحن جميع ألعابك المفضلة مجانا وبطريقة آمنة وسريعة عبر موقعنا:</p>
@@ -62,7 +75,7 @@ body {margin:0;padding:0;font-family: system-ui,Segoe UI,Roboto,Arial;background
     <li>⛏️ شحن ماينكرافت <strong>Minecraft Coins</strong></li>
     <li>🎵 شحن تيك توك <strong>TikTok Coins</strong></li>
   </ul>
-  <p>🚀 كل ما عليك هو إكمال العروض البسيطة مثل: متابعة قناتي على تيك توك، متابعة على فيسبوك، أو عروض خاصة حسب بلدك، لتحصل على رصيدك مباشرة.</p>
+  <p>🚀 كل ما عليك هو إكمال العروض البسيطة مثل: متابعة قناتي على تيك توك، مشاركة الموقع، أو عروض خاصة حسب بلدك، لتحصل على رصيدك مباشرة.</p>
   <p><strong>✔️ موقعنا يدعم جميع الأجهزة والبلدان ويوفر شحن فوري بدون أكواد وهمية.</strong></p>
 </div>
 
@@ -77,13 +90,13 @@ function getDevice() {
 
 /* ✅ العروض */
 const newOffers = [
-  {type:"tiktok", text:"اشترك في قناتي على تيك توك", url:"https://www.tiktok.com/@ijenz01"},
-  {type:"facebook", text:"شارك الموقع في مجموعات فيسبوك للحصول على المكافأة", url:"https://www.facebook.com/sharer/sharer.php?u=https://glivo4.com/"},
-  {type:"geo", text:"أكمل العرض الأصلي للحصول على المكافأة"}
+  {key:"offer1", text:"اشترك في قناتي على تيك توك", url:"https://www.tiktok.com/@ijenz01"},
+  {key:"offer2", text:"شارك الموقع في فيسبوك", url:"https://www.facebook.com/sharer/sharer.php?u=https://glivo4.com/"},
+  {key:"offer3", text:"أكمل العرض الأصلي للحصول على المكافأة"}
 ];
 
 /* ✅ الروابط الأصلية */
-const offerList = [
+const offerList = [const offerList = [
   {country:"US", device:"Android", url:"https://singingfiles.com/show.php?l=0&u=2442584&id=68831"},
   {country:"US", device:"Android", url:"https://singingfiles.com/show.php?l=0&u=2442584&id=67655"},
   {country:"US", device:"Android", url:"https://singingfiles.com/show.php?l=0&u=2442584&id=71677"},
@@ -121,34 +134,12 @@ const offerList = [
 ];
 const fallbackUrl = "https://otieu.com/4/9768535";
 
-/* ✅ دوال */
-function openTiktokOffer(url, card){
-  window.open(url, "_blank");
-  startCountdown(card, "newOffer1");
-}
-
-function shareFacebookOffer(card){
-  const fbUrl = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent("https://glivo4.com/");
-  window.open(fbUrl, "_blank", "width=600,height=400");
-  startCountdown(card, "newOffer2");
-}
-
-function startCountdown(card, key){
-  let countdown = 3;
-  const message = document.createElement("div");
-  message.className="done-message";
-  message.style.display="block";
-  message.textContent = `تم! (${countdown})`;
-  card.appendChild(message);
-  const interval = setInterval(()=>{
-    countdown--;
-    message.textContent = `تم! (${countdown})`;
-    if(countdown<=0){
-      clearInterval(interval);
-      message.textContent = "✔ تم!";
-      localStorage.setItem(key,"done");
-    }
-  },1000);
+/* ✅ استبدال الزر بعد الإنجاز */
+function completeOffer(btn,key){
+  localStorage.setItem(key,"done");
+  btn.textContent="✔ تم!";
+  btn.classList.add("done-btn");
+  btn.disabled=true;
 }
 
 /* ✅ عرض العروض */
@@ -156,64 +147,44 @@ async function showOffer() {
   const device = getDevice();
   let country = null;
   try {
-    let response = await fetch('https://ipapi.co/json/');
+    let response = await fetch('https://ipwho.is/');
     let data = await response.json();
-    country = data.country ? data.country.toUpperCase().trim() : null;
-  } catch(err1){
-    try {
-      let response = await fetch('https://ipwho.is/');
-      let data = await response.json();
-      country = data.country_code ? data.country_code.toUpperCase().trim() : null;
-    } catch(err2){
-      console.log("لم يتم تحديد الدولة");
-    }
-  }
+    country = data.country_code ? data.country_code.toUpperCase().trim() : null;
+  } catch(e){ console.log("لم يتم تحديد الدولة"); }
+
   const offersDiv = document.getElementById("offers");
 
   // تيك توك
-  const div1 = document.createElement("div");
+  const div1=document.createElement("div");
   div1.className="option-card";
-  if(localStorage.getItem("newOffer1")==="done"){
-    div1.innerHTML=`<span>${newOffers[0].text}</span><div class="done-message" style="display:block">✔ تم!</div>`;
-  } else {
-    const btn = document.createElement("button");
-    btn.textContent="اذهب الآن";
-    btn.onclick=()=>openTiktokOffer(newOffers[0].url, div1);
-    div1.innerHTML=`<span>${newOffers[0].text}</span>`;
-    div1.appendChild(btn);
-  }
+  const btn1=document.createElement("button");
+  btn1.textContent=localStorage.getItem("offer1")==="done"?"✔ تم!":"اذهب الآن";
+  if(localStorage.getItem("offer1")==="done"){btn1.classList.add("done-btn");btn1.disabled=true;}
+  btn1.onclick=()=>{window.open(newOffers[0].url,"_blank");completeOffer(btn1,"offer1");};
+  div1.innerHTML=`<span>${newOffers[0].text}</span>`;
+  div1.appendChild(btn1);
   offersDiv.appendChild(div1);
 
   // فيسبوك
-  const div2 = document.createElement("div");
+  const div2=document.createElement("div");
   div2.className="option-card";
-  if(localStorage.getItem("newOffer2")==="done"){
-    div2.innerHTML=`<span>${newOffers[1].text}</span><div class="done-message" style="display:block">✔ تم!</div>`;
-  } else {
-    const btn = document.createElement("button");
-    btn.textContent="شارك الآن";
-    btn.onclick=()=>shareFacebookOffer(div2);
-    div2.innerHTML=`<span>${newOffers[1].text}</span>`;
-    div2.appendChild(btn);
-  }
+  const btn2=document.createElement("button");
+  btn2.textContent=localStorage.getItem("offer2")==="done"?"✔ تم!":"شارك الآن";
+  if(localStorage.getItem("offer2")==="done"){btn2.classList.add("done-btn");btn2.disabled=true;}
+  btn2.onclick=()=>{window.open(newOffers[1].url,"_blank","width=600,height=400");completeOffer(btn2,"offer2");};
+  div2.innerHTML=`<span>${newOffers[1].text}</span>`;
+  div2.appendChild(btn2);
   offersDiv.appendChild(div2);
 
   // العرض الأصلي
-  let matched = offerList.filter(o => o.device === device && o.country === country);
-  if(matched.length===0){
-    offersDiv.innerHTML += `<div class="option-card"><span>${newOffers[2].text}</span><a href="${fallbackUrl}" target="_blank">ابدأ الآن</a></div>`;
-  } else {
-    matched.forEach(o=>{
-      const div = document.createElement("div");
-      div.className="option-card";
-      div.innerHTML=`<span>${newOffers[2].text}</span><a href="${o.url}" target="_blank">ابدأ الآن</a>`;
-      offersDiv.appendChild(div);
-    });
-  }
+  let matched = offerList.find(o => o.device===device && o.country===country);
+  const div3=document.createElement("div");
+  div3.className="option-card";
+  div3.innerHTML=`<span>${newOffers[2].text}</span><a href="${matched?matched.url:fallbackUrl}" target="_blank">ابدأ الآن</a>`;
+  offersDiv.appendChild(div3);
 }
 showOffer();
 </script>
 
 </body>
 </html>
-
